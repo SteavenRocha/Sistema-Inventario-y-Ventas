@@ -1,0 +1,43 @@
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show>.nav-link {
+    color: white !important;
+    background: #007bff !important;
+    font-weight: bold !important;
+    border: 1.5px solid #007bff; /* Añade un borde de 1 píxel sólido de color azul */
+    border-radius: 5px; /* Añade esquinas redondeadas para suavizar el borde */
+}
+
+table.dataTable tbody td {
+    white-space: nowrap !important;
+    font-size: 13px !important;
+}
+
+.table thead th {
+    white-space: nowrap !important;
+}
+
+#tbl_productos thead th {
+    white-space: nowrap !important;
+}
+
+.addNewRecord {
+    background: #198754  !important;
+    color: white !important;
+}
+
+.buttons-excel {
+    background: #0d6efd  !important;
+    color: white !important;
+}
+
+.buttons-print {
+    background: #ffc107  !important;
+    color: white !important;
+}
+
+.dt-button{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
