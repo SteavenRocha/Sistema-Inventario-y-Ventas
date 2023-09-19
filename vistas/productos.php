@@ -354,7 +354,7 @@
                     targets: 9,
                     createdCell: function(td, cellData, rowData, row, col){
                         if(parseFloat(rowData[9]) <= parseFloat(rowData[10])){
-                            $(td).parent().css('background', '#D3D3D3')
+                            $(td).parent().css('background', '#FF5733')
                         }
                     }
                 },
