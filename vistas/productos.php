@@ -359,6 +359,10 @@
                     }
                 },
                 {
+                    targets: 6,
+                    visible: false
+                },
+                {
                     targets: 10,
                     visible: false
                 },
