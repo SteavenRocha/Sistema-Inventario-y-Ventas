@@ -354,7 +354,7 @@
                     targets: 9,
                     createdCell: function(td, cellData, rowData, row, col){
                         if(parseFloat(rowData[9]) <= parseFloat(rowData[10])){
-                            $(td).parent().css('background', '#FF5733')
+                            $(td).parent().css('background', '#D3D3D3')
                         }
                     }
                 },
@@ -489,10 +489,20 @@
     }
 
     function formSubmitClick(){
+        
+        var codigo_producto= $("#iptCodigoReg").val();
+        var id_categoria_producto = $("#selCategoriaReg").val();
+        var descripcion_producto= $("#iptDescripcionReg").val();
+        var precio_compra_producto= $("#iptPrecioCompraReg").val();
+        var precio_venta_producto= $("#iptPrecioVentaReg").val();
+        var stock_producto= $("#iptStockReg").val();
+        var minimo_stock_producto=  $("#iptMinimoStockReg").val();
 
         //VALIDAR INGRESO DE CAMPOS O INPUTOS
+        if(codigo_producto && (id_categoria_producto!=0) && descripcion_producto
+        && precio_compra_producto && precio_venta_producto && stock_producto && minimo_stock_producto){
 
-        Swal.fire({
+            Swal.fire({
             title: '¿Está seguro de registrar el producto?',
             icon: 'warning',
             showCancelButton: true,
@@ -500,9 +510,8 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Si, deseo registrarlo!',
             cancelButtonText: 'Cancelar',
-        }).then((result) => {
-            
-            if (result.isConfirmed){
+            }).then((result) => {
+                if (result.isConfirmed){
 
                 var datos = new FormData();
                 
@@ -554,6 +563,15 @@
                     }
                 });
             }
-        })
+          })
+
+        }else{
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Por favor, complete todos los campos obligatorios.'
+            });
+        }
+
     }
 </script>
