@@ -41,7 +41,7 @@
 
                             <div class="col-lg-12 d-lg-flex">
 
-                           <!--  <div style="width: 20%;" class="form-floating mx-1">
+                            <div style="width: 20%;" class="form-floating mx-1">
                                 <input 
                                         type="text" 
                                         id="iptCodigoBarras"
@@ -49,8 +49,8 @@
                                         placeholder="Codigo de Barras..."
                                         data-index="2">
                                 <label for="iptCodigoBarras">Codigo de Barras</label>
-                            </div>-->
-                            <div style="width: 25%;" class="form-floating mx-1">
+                            </div>
+                            <div style="width: 20%;" class="form-floating mx-1">
                                 <input 
                                         type="text" 
                                         id="iptCategoria"
@@ -59,7 +59,7 @@
                                         data-index="4">
                                 <label for="iptCategoria">Categoria</label>
                             </div>
-                            <div style="width: 25%;" class="form-floating mx-1">
+                            <div style="width: 20%;" class="form-floating mx-1">
                                 <input 
                                         type="text" 
                                         id="iptProducto"
@@ -68,17 +68,17 @@
                                         data-index="5">
                                 <label for="iptProducto">Producto</label>
                             </div>
-                            <div style="width: 25%;" class="form-floating mx-1">
+                            <div style="width: 20%;" class="form-floating mx-1">
                                 <input 
-                                        type="text" 
+                                        type="number" 
                                         id="iptPrecioVentaDesde"
                                         class="form-control"
                                         placeholder="P. Venta Desde">
                                 <label for="iptPrecioVentaDesde">P. Venta Desde</label>
                             </div>
-                            <div style="width: 25%;" class="form-floating mx-1">
+                            <div style="width: 20%;" class="form-floating mx-1">
                                 <input 
-                                        type="text" 
+                                        type="number" 
                                         id="iptPrecioVentaHasta"
                                         class="form-control"
                                         placeholder="P. Venta Hasta">
@@ -317,6 +317,9 @@
                         //EVENTO PARA ELVANTAR LA VENTANA MODAL
                         $("#mdlGestionarProducto").modal('show')
                         accion = 2;
+
+                        // Llamada a la función para quitar la validación
+                        $(".needs-validation").removeClass("was-validated");
                     }
                 },
                 'excel', 'print', 'pageLength'
@@ -409,9 +412,9 @@
         });
 
         //EVENTOS PARA CRITERIOS DE BUSQUEDA (CODIGO, CATEGORIAS Y PRODUCTOS)
-        /*$("#iptCodigoBarras").keyup(function(){
+        $("#iptCodigoBarras").keyup(function(){
             table.column($(this).data('index')).search(this.value).draw();
-        })*/
+        })
         $("#iptCategoria").keyup(function(){
             table.column($(this).data('index')).search(this.value).draw();
         })
@@ -443,7 +446,7 @@
 
         $('#btnLimpiarBusqueda').on('click',function(){
 
-           // $('#iptCodigoBarras').val('')
+            $('#iptCodigoBarras').val('')
             $('#iptCategoria').val('')
             $('#iptProducto').val('')
             $('#iptPrecioVentaDesde').val('')
@@ -575,11 +578,9 @@
 
     document.getElementById("btnCancelarRegistro").addEventListener("click", function(){
         $(".needs-validation").removeClass("was-validated");
-
     });
     document.getElementById("btnCerrarModal").addEventListener("click", function(){
         $(".needs-validation").removeClass("was-validated");
-
     });
     
 </script>
