@@ -317,7 +317,6 @@
 </div>
 
 <script>
-
     var accion;
     var table;
     var operacion_stock = 0;
@@ -542,61 +541,67 @@
      /* ======================================================================================
     EVENTO AL DAR CLICK EN EL BOTON AUMENTAR STOCK
      =========================================================================================*/
-        $('#tbl_productos tbody').on('click', '.btnAumentarStock', function() {
+    $('#tbl_productos tbody').on('click', '.btnAumentarStock', function() {
 
-            operacion_stock = 1; //sumar stock
+        operacion_stock = 1; //sumar stock
 
-            $("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
+        $("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
 
-            $("#titulo_modal_stock").html('Aumentar Stock'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
-            $("#titulo_modal_label").html('Agregar al Stock'); // CAMBIAR EL TEXTO DEL LABEL DEL INPUT PARA INGRESO DE STOCK
-            $("#iptStockSumar").attr("placeholder", "Ingrese cantidad a agregar al Stock"); //CAMBIAR EL PLACEHOLDER 
+        $("#titulo_modal_stock").html('Aumentar Stock'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
+        $("#titulo_modal_label").html('Agregar al Stock'); // CAMBIAR EL TEXTO DEL LABEL DEL INPUT PARA INGRESO DE STOCK
+        $("#iptStockSumar").attr("placeholder", "Ingrese cantidad a agregar al Stock"); //CAMBIAR EL PLACEHOLDER 
 
-            var data = table.row($(this).parents('tr')).data(); //OBTENER EL ARRAY CON LOS DATOS DE CADA COLUMNA DEL DATATABLE
+        var data = table.row($(this).parents('tr')).data(); //OBTENER EL ARRAY CON LOS DATOS DE CADA COLUMNA DEL DATATABLE
+        if(table.row(this).child.isShown()){ //cuando esta en tamaño responsivo
+            var data= table.row(this).data();
+        }
 
-            $("#stock_codigoProducto").html(data[2])	//CODIGO DEL PRODUCTO DEL DATATABLE
-            $("#stock_Producto").html(data[5]) 			//NOMBRE DEL PRODUCTO DEL DATATABLE
-            $("#stock_Stock").html(data[9])				//STOCK ACTUAL DEL PRODUCTO DEL DATATABLE
+        $("#stock_codigoProducto").html(data[2])	//CODIGO DEL PRODUCTO DEL DATATABLE
+        $("#stock_Producto").html(data[5]) 			//NOMBRE DEL PRODUCTO DEL DATATABLE
+        $("#stock_Stock").html(data[9])				//STOCK ACTUAL DEL PRODUCTO DEL DATATABLE
 
-            $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
+        $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
 
-        })
+    })
 
     /* ======================================================================================
     EVENTO AL DAR CLICK EN EL BOTON DISMINUIR STOCK
      =========================================================================================*/
-        $('#tbl_productos tbody').on('click', '.btnDisminuirStock', function() {
+    $('#tbl_productos tbody').on('click', '.btnDisminuirStock', function() {
 
-            operacion_stock = 2; //restar stock
-            accion = 3;
-            $("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
+        operacion_stock = 2; //restar stock
+        accion = 3;
+        $("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
 
-            $("#titulo_modal_stock").html('Disminuir Stock'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
-            $("#titulo_modal_label").html('Disminuir al Stock'); // CAMBIAR EL TEXTO DEL LABEL DEL INPUT PARA INGRESO DE STOCK
-            $("#iptStockSumar").attr("placeholder", "Ingrese cantidad a disminuir al Stock"); //CAMBIAR EL PLACEHOLDER 
+        $("#titulo_modal_stock").html('Disminuir Stock'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
+        $("#titulo_modal_label").html('Disminuir al Stock'); // CAMBIAR EL TEXTO DEL LABEL DEL INPUT PARA INGRESO DE STOCK
+        $("#iptStockSumar").attr("placeholder", "Ingrese cantidad a disminuir al Stock"); //CAMBIAR EL PLACEHOLDER 
 
 
-            var data = table.row($(this).parents('tr')).data(); //OBTENER EL ARRAY CON LOS DATOS DE CADA COLUMNA DEL DATATABLE
+        var data = table.row($(this).parents('tr')).data(); //OBTENER EL ARRAY CON LOS DATOS DE CADA COLUMNA DEL DATATABLE
+        if(table.row(this).child.isShown()){ //cuando esta en tamaño responsivo
+            var data= table.row(this).data();
+        }
 
-            $("#stock_codigoProducto").html(data[2])	//CODIGO DEL PRODUCTO DEL DATATABLE
-            $("#stock_Producto").html(data[5])			//NOMBRE DEL PRODUCTO DEL DATATABLE
-            $("#stock_Stock").html(data[9])				//STOCK ACTUAL DEL PRODUCTO DEL DATATABLE
+        $("#stock_codigoProducto").html(data[2])	//CODIGO DEL PRODUCTO DEL DATATABLE
+        $("#stock_Producto").html(data[5])			//NOMBRE DEL PRODUCTO DEL DATATABLE
+        $("#stock_Stock").html(data[9])				//STOCK ACTUAL DEL PRODUCTO DEL DATATABLE
 
-            $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
+        $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
 
-        })
+    })
 
     /* ======================================================================================
     EVENTO QUE LIMPIA EL INPUT DE INGRESO DE STOCK AL CERRAR LA VENTANA MODAL
     =========================================================================================*/
-        $("#btnCancelarRegistroStock, #btnCerrarModalStock").on('click', function() {
-            $("#iptStockSumar").val("")
-        })
+    $("#btnCancelarRegistroStock, #btnCerrarModalStock").on('click', function() {
+        $("#iptStockSumar").val("")
+    })
 
     /* ======================================================================================
     EVENTO AL DIGITAR LA CANTIDAD A AUMENTAR O DISMINUIR DEL STOCK
     =========================================================================================*/
-        $("#iptStockSumar").keyup(function() {
+    $("#iptStockSumar").keyup(function() {
             //console.log($("#iptStockSumar").val());
             if (operacion_stock == 1) {
                 if ($("#iptStockSumar").val() != "" && $("#iptStockSumar").val() > 0) {
@@ -653,64 +658,158 @@
                 }
             }
          
-        })
+    })
+
     /* ======================================================================================
     EVENTO QUE REGISTRA EN BD EL AUMENTO O DISMINUCION DE STOCK
     =========================================================================================*/
     $("#btnGuardarNuevorStock").on('click', function() {
 
-            if ($("#iptStockSumar").val() != "" && $("#iptStockSumar").val() > 0) {
+        if ($("#iptStockSumar").val() != "" && $("#iptStockSumar").val() > 0) {
 
-                var nuevoStock = parseFloat($("#stock_NuevoStock").html()),
-                    codigo_producto = $("#stock_codigoProducto").html();
+            var nuevoStock = parseFloat($("#stock_NuevoStock").html()),
+                codigo_producto = $("#stock_codigoProducto").html();
+
+            var datos = new FormData();
+
+            datos.append('accion', 3);
+            datos.append('nuevoStock', nuevoStock);
+            datos.append('codigo_producto', codigo_producto);
+            datos.append('tipo_movimiento', operacion_stock);
+
+            $.ajax({
+                url: "ajax/productos.ajax.php",
+                method: "POST",
+                data: datos,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(respuesta) {
+
+                    $("#stock_NuevoStock").html("");
+                    $("#iptStockSumar").val("");
+
+                    $("#mdlGestionarStock").modal('hide');
+                    
+                    table.ajax.reload();
+
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Se actualizó el stock correctamente.!',
+                            showConfirmButton: false,
+                            timer: 1500
+                    })
+
+                    //mensajeToast('success','Se actualizó el stock correctamente.!')
+
+                }
+            });
+
+        } else {
+                Toast.fire({
+                    icon: 'warning',
+                    title: 'Debe ingresar la cantidad a aumentar o disminuir'
+                });
+
+            //mensajeToast('error','Debe ingresar la cantidad a aumentar');
+
+            return false;
+        }
+
+        })
+    })
+
+    /* ======================================================================================
+    EVENTO AL DAR CLICK EN EL BOTON EDITAR PRODUCTO
+    =========================================================================================*/
+    $('#tbl_productos tbody').on('click', '.btnEditarProducto', function() {
+
+        // Llamada a la función para quitar la validación
+        $(".needs-validation").removeClass("was-validated");
+
+        accion = 4; //seteamos la accion para editar
+
+        $("#mdlGestionarProducto").modal('show');
+
+        var data = table.row($(this).parents('tr')).data();
+        if(table.row(this).child.isShown()){ //cuando esta en tamaño responsivo
+            var data= table.row(this).data();
+        }      
+        //? table.row($(this).parents().prev('tr')).data()
+        //: table.row($(this).parents('tr')).data();
+
+        $("#iptCodigoReg").val(data["codigo_producto"]);
+        $("#selCategoriaReg").val(data[3]);
+        $("#iptDescripcionReg").val(data[5]);
+        $("#iptPrecioCompraReg").val(data[6]);
+        $("#iptPrecioVentaReg").val(data[7]);
+        $("#iptUtilidadReg").val(data[8]);
+        $("#iptStockReg").val(data[9].replace(' Und(s)', '').replace(' Kg(s)', ''));
+        $("#iptMinimoStockReg").val(data[10].replace(' Und(s)', '').replace(' Kg(s)', ''));
+
+    })
+    /* ======================================================================================
+    EVENTO AL DAR CLICK EN EL BOTON ELIMINAR PRODUCTO
+    =========================================================================================*/
+    $('#tbl_productos tbody').on('click', '.btnEliminarProducto', function() {
+        
+        accion = 5; //seteamos la accion para editar
+        
+        var data = table.row($(this).parents('tr')).data();
+        if(table.row(this).child.isShown()){ //cuando esta en tamaño responsivo
+            var data= table.row(this).data();
+        }
+
+        var codigo_producto = data["codigo_producto"];
+
+        Swal.fire({
+            title: '¿Está seguro de eliminar el producto?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo eliminarlo!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+
+            if (result.isConfirmed) {
 
                 var datos = new FormData();
 
-                datos.append('accion', 3);
-                datos.append('nuevoStock', nuevoStock);
-                datos.append('codigo_producto', codigo_producto);
-                datos.append('tipo_movimiento', operacion_stock);
+                datos.append("accion", accion);
+                datos.append("codigo_producto", codigo_producto); //codigo_producto               
 
                 $.ajax({
                     url: "ajax/productos.ajax.php",
                     method: "POST",
                     data: datos,
-                    processData: false,
+                    cache: false,
                     contentType: false,
+                    processData: false,
                     dataType: 'json',
                     success: function(respuesta) {
 
-                        $("#stock_NuevoStock").html("");
-                        $("#iptStockSumar").val("");
+                        if (respuesta == "ok") {
 
-                        $("#mdlGestionarStock").modal('hide');
-                        
-                        table.ajax.reload();
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'El producto se eliminó correctamente'
+                            });
 
-                         Swal.fire({
-                             position: 'center',
-                             icon: 'success',
-                             title: 'Se actualizó el stock correctamente.!',
-                             showConfirmButton: false,
-                             timer: 1500
-                        })
+                            table.ajax.reload();
 
-                        //mensajeToast('success','Se actualizó el stock correctamente.!')
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'El producto no se pudo eliminar'
+                            });
+                        }
 
                     }
                 });
 
-            } else {
-                 Toast.fire({
-                     icon: 'warning',
-                     title: 'Debe ingresar la cantidad a aumentar o disminuir'
-                 });
-
-                //mensajeToast('error','Debe ingresar la cantidad a aumentar');
-
-                return false;
             }
-
         })
     })
 
@@ -732,14 +831,23 @@
 
             if (form.checkValidity() == true){
                 console.log("Listo para registrar el producto")
+
+                if (accion == 2){
+                    var titulo_msj = "¿Está seguro de registrar el producto?"
+                    var titulo_msj2 = "Si, deseo registrarlo!"
+                }else if (accion == 4){
+                    var titulo_msj = "¿Está seguro de actualizar el producto?"
+                    var titulo_msj2 = "Si, deseo actualizarlo!"
+                }
+                
                 //INGRESO DE DATOS
                 Swal.fire({
-                    title: '¿Está seguro de registrar el producto?',
+                    title: titulo_msj,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, deseo registrarlo!',
+                    confirmButtonText: titulo_msj2,
                     cancelButtonText: 'Cancelar',
                 }).then((result) => {
                     
@@ -758,6 +866,12 @@
                         datos.append("minimo_stock_producto", $("#iptMinimoStockReg").val());
                         datos.append("ventas_producto", 0);
 
+                        if (accion == 2){
+                            var titulo_msj = "El producto se registró correctamente"
+                        }else if (accion == 4){
+                            var titulo_msj = "El producto se actualizó correctamente"
+                        }
+
                         $.ajax({
                             url: "ajax/productos.ajax.php",
                             method: "POST",
@@ -771,7 +885,7 @@
 
                                     Toast.fire({
                                         icon: 'success',
-                                        title: 'El producto se registró correctamente'
+                                        title: titulo_msj
                                     });
 
                                     table.ajax.reload();
@@ -810,5 +924,5 @@
     document.getElementById("btnCerrarModal").addEventListener("click", function(){
         $(".needs-validation").removeClass("was-validated");
     });
-    
+
 </script>
