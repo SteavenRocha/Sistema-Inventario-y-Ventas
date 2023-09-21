@@ -38,6 +38,17 @@ class ajaxProductos{
     
         echo json_encode($producto);
     }
+
+    public function ajaxActualizarStock($data){
+
+        $table = "productos";
+        $id = $_POST["codigo_producto"];
+        $nameId = "codigo_producto";
+        
+        $respuesta = ProductosControlador::ctrActualizarStock($table, $data, $id, $nameId);
+
+        echo json_encode($respuesta);
+    }
     
 }
 
@@ -61,6 +72,15 @@ if(isset($_POST['accion']) && $_POST['accion'] == 1){ //parametro para listar pr
     $registrarProducto -> ventas_producto = $_POST["ventas_producto"];
     $registrarProducto -> ajaxRegistrarProducto();
     
+}else if (isset($_POST['accion']) && $_POST['accion'] == 3){
+
+    $actualizarStock = new ajaxProductos();
+    
+    $data = array(
+        "stock_producto" => $_POST["nuevoStock"]
+    );
+    $actualizarStock -> ajaxActualizarStock($data);
+
 }else if(isset($_FILES)){
     $archivo_productos = new ajaxProductos();
     $archivo_productos -> fileProductos = $_FILES['fileProductos'];
