@@ -796,31 +796,133 @@
         $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
     })
 
-    /* ======================================================================================
-    EVENTO AL DAR CLICK EN EL BOTON EDITAR
-    =========================================================================================*/
-     $('#tbl_productos tbody').on('click', '.btnEditarProducto ', function() {
-        operacion_stock = 3; //editar producto
-        accion = 5;
-        $("#mdlGestionarProducto").modal('show'); //MOSTRAR VENTANA MODAL
-        $("#titulo_modal_stock").html('Modificar Producto'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
-        var data = table.row($(this).parents('tr')).data(); //OBTENER EL ARRAY CON LOS DATOS DE CADA COLUMNA DEL DATATABLE
+     /* ======================================================================================
+    EVENTO QUE LIMPIA EL INPUT DE INGRESO DE STOCK AL CERRAR LA VENTANA MODAL
+     =========================================================================================*/
+        $("#btnCancelarRegistroStock, #btnCerrarModalStock").on('click', function() {
+            $("#iptStockSumar").val("")
+        })
 
+    /* ======================================================================================
+    EVENTO AL DIGITAR LA CANTIDAD A AUMENTAR O DISMINUIR DEL STOCK
+     =========================================================================================*/
+        $("#iptStockSumar").keyup(function() {
+            //console.log($("#iptStockSumar").val());
+            if (operacion_stock == 1) {
+                if ($("#iptStockSumar").val() != "" && $("#iptStockSumar").val() > 0) {
+
+                    var stockActual = parseFloat($("#stock_Stock").html());
+                    var cantidadAgregar = parseFloat($("#iptStockSumar").val());
+
+                    $("#stock_NuevoStock").html(stockActual + cantidadAgregar);
+
+                } else {
+
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'Ingrese un valor mayor a 0'
+                    });
+
+                    //mensajeToast('error', 'Ingrese un valor mayor a 0');
+
+                    $("#iptStockSumar").val("")
+                    $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
+
+                }
+            }else{
+                if ($("#iptStockSumar").val() != "" && $("#iptStockSumar").val() > 0) {
+                    var stockActual = parseFloat($("#stock_Stock").html());
+                    var cantidadAgregar = parseFloat($("#iptStockSumar").val());
+
+                    $("#stock_NuevoStock").html(stockActual - cantidadAgregar);
+
+                    if (parseInt($("#stock_NuevoStock").html()) < 0){
+
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'La cantidad a disminuir no puede ser mayor al stock actual (Nuevo stock < 0)'
+                        });
+
+                        //mensajeToast('error', 'La cantidad a disminuir no puede ser mayor al stock actual (Nuevo stock < 0)');
+
+                        $("#iptStockSumar").val("");
+                        $("#iptStockSumar").focus();
+                        $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
+                    }
+                }else {
+                    
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'Ingrese un valor mayor a 0'
+                    });
+
+                    //mensajeToast('error', 'Ingrese un valor mayor a 0');
+                    
+                    $("#iptStockSumar").val("")                
+                    $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
+                }
+            }
+         
+        })
+    /* ======================================================================================
+    EVENTO QUE REGISTRA EN BD EL AUMENTO O DISMINUCION DE STOCK
+    =========================================================================================*/
+    $("#btnGuardarNuevorStock").on('click', function() {
+
+            if ($("#iptStockSumar").val() != "" && $("#iptStockSumar").val() > 0) {
+
+                var nuevoStock = parseFloat($("#stock_NuevoStock").html()),
+                    codigo_producto = $("#stock_codigoProducto").html();
+
+                var datos = new FormData();
+
+                datos.append('accion', 3);
+                datos.append('nuevoStock', nuevoStock);
+                datos.append('codigo_producto', codigo_producto);
+                datos.append('tipo_movimiento', operacion_stock);
+
+                $.ajax({
+                    url: "ajax/productos.ajax.php",
+                    method: "POST",
+                    data: datos,
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    success: function(respuesta) {
+
+                        $("#stock_NuevoStock").html("");
+                        $("#iptStockSumar").val("");
+
+                        $("#mdlGestionarStock").modal('hide');
+                        
+                        table.ajax.reload();
+
+                         Swal.fire({
+                             position: 'center',
+                             icon: 'success',
+                             title: 'Se actualizó el stock correctamente.!',
+                             showConfirmButton: false,
+                             timer: 1500
+                        })
+
+                        //mensajeToast('success','Se actualizó el stock correctamente.!')
+
+                    }
+                });
+
+            } else {
+                 Toast.fire({
+                     icon: 'warning',
+                     title: 'Debe ingresar la cantidad a aumentar o disminuir'
+                 });
+
+                //mensajeToast('error','Debe ingresar la cantidad a aumentar');
+
+                return false;
+            }
+
+        })
     })
-
-    /* ======================================================================================
-    EVENTO AL DAR CLICK EN EL BOTON ELIMINAR
-    =========================================================================================*/
-   /* $('#tbl_productos tbody').on('click', '.btnEliminarProducto ', function() {
-        operacion_stock = 4; //editar producto
-        accion = 6;
-        $("#mdlEliminarProducto").modal('show'); //MOSTRAR VENTANA MODAL
-        $("#titulo_modal_stock").html('Eliminar Producto'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
-
-    })*/
-})
-
-
 
     //CALCULA LA UTILIDAD
     function calcularUtilidad(){
