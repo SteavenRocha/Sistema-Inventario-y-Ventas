@@ -423,10 +423,7 @@
                     targets: 6,
                     visible: false
                 },
-                {
-                    targets: 10,
-                    visible: false
-                },
+                
                 {
                     targets: 11,
                     visible: false
