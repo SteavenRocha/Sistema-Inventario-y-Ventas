@@ -7,6 +7,7 @@ require_once "../vendor/autoload.php";
 class ajaxProductos{
 
     public $fileProductos;
+
     public $codigo_producto;
     public $id_categoria_producto;
     public $descripcion_producto;
@@ -71,6 +72,20 @@ class ajaxProductos{
 
         echo json_encode($respuesta);
     }
+
+    public function ajaxListarNombreProductos(){
+        
+        $NombreProductos = ProductosControlador::ctrListarNombreProductos();
+
+        echo json_encode($NombreProductos);
+    }
+
+    public function ajaxGetDatosProducto(){
+
+        $producto = ProductosControlador::ctrGetDatosProducto($this->codigo_producto);
+        
+        echo json_encode($producto);
+    }
 }
 
 if(isset($_POST['accion']) && $_POST['accion'] == 1){ //parametro para listar productos
@@ -102,8 +117,8 @@ if(isset($_POST['accion']) && $_POST['accion'] == 1){ //parametro para listar pr
     );
     $actualizarStock -> ajaxActualizarStock($data);
 
-}else if (isset($_POST['accion']) && $_POST['accion'] == 4){
-
+}else if (isset($_POST['accion']) && $_POST['accion'] == 4){  //ACCION PARA ACTUALIZAR UN PRODUCTO
+ 
     $actualizarProducto = new ajaxProductos();
     
     $data = array(
@@ -118,10 +133,21 @@ if(isset($_POST['accion']) && $_POST['accion'] == 1){ //parametro para listar pr
 
     $actualizarProducto -> ajaxActualizarProducto($data);
 
-}else if (isset($_POST['accion']) && $_POST['accion'] == 5){
+}else if (isset($_POST['accion']) && $_POST['accion'] == 5){ //ACCION PARA ELIMINAR UN PRODUCTO
 
     $eliminarProducto = new ajaxProductos();
     $eliminarProducto -> ajaxEliminarProducto();
+
+}else if (isset($_POST['accion']) && $_POST['accion'] == 6){ //TRAER LISTADO DE PRODUCTOS PARA EL AUTOCOMPLETE
+
+    $nombreProductos = new ajaxProductos();
+    $nombreProductos -> ajaxListarNombreProductos();
+
+}else if (isset($_POST['accion']) && $_POST['accion'] == 7){ //OBTENER DATOS DE UN PRODUCTO POR SU CODIGO
+    
+    $listaProducto = new ajaxProductos();
+    $listaProducto -> codigo_producto = $_POST["codigo_producto"];
+    $listaProducto -> ajaxGetDatosProducto();
 
 }else if(isset($_FILES)){
     $archivo_productos = new ajaxProductos();

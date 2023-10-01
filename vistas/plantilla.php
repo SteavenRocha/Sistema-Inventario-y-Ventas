@@ -25,6 +25,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="vistas/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+ 
+    <!-- Jquery CSS -->
+    <link rel="stylesheet" href="vistas/assets/plugins/jquery-ui/css/jquery-ui.css">
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -47,6 +50,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="vistas/assets/plugins/chart.js/Chart.min.js"></script>
     <!-- SweetAlert2 -->
     <script src="vistas/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+    <!-- jquery UI -->
+    <script src="vistas/assets/plugins/jquery-ui/js/jquery-ui.js"></script>
     
     <!-- ============================================================
     =LIBRERIAS PARA USO DE DATATABLES JS
