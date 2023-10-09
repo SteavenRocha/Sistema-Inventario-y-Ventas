@@ -17,6 +17,7 @@ class ajaxProductos{
     public $stock_producto;
     public $minimo_stock_producto;
     public $ventas_producto;
+    public $cantidad_a_comprar;
     
     public function ajaxCargaMasivaProductos(){
 
@@ -86,6 +87,12 @@ class ajaxProductos{
         
         echo json_encode($producto);
     }
+
+    public function ajaxVerificarStockProducto(){
+        $respuesta = ProductosControlador::ctrVerificaStockProducto($this->codigo_producto,$this->cantidad_a_comprar);
+        
+        echo json_encode($respuesta);
+    }
 }
 
 if(isset($_POST['accion']) && $_POST['accion'] == 1){ //parametro para listar productos
@@ -148,6 +155,15 @@ if(isset($_POST['accion']) && $_POST['accion'] == 1){ //parametro para listar pr
     $listaProducto = new ajaxProductos();
     $listaProducto -> codigo_producto = $_POST["codigo_producto"];
     $listaProducto -> ajaxGetDatosProducto();
+
+}else if (isset($_POST['accion']) && $_POST['accion'] == 8){ //VERIFICAR STOCK DEL PRODUCTO
+    
+    $verificaStock = new AjaxProductos();
+
+    $verificaStock -> codigo_producto = $_POST["codigo_producto"];
+    $verificaStock -> cantidad_a_comprar = $_POST["cantidad_a_comprar"];
+
+    $verificaStock -> ajaxVerificarStockProducto();
 
 }else if(isset($_FILES)){
     $archivo_productos = new ajaxProductos();
