@@ -24,7 +24,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="vistas/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet" href="vistas/assets/plugins/sweetalert2/sweetalert2.min.css">
+    
+    <!-- toast -->
+    <link rel="stylesheet" href="vistas/assets/plugins/toastr/toastr.min.css">
  
     <!-- Jquery CSS -->
     <link rel="stylesheet" href="vistas/assets/plugins/jquery-ui/css/jquery-ui.css">
@@ -50,6 +53,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="vistas/assets/plugins/chart.js/Chart.min.js"></script>
     <!-- SweetAlert2 -->
     <script src="vistas/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+    <!-- toast -->
+    <script src="vistas/assets/plugins/toastr/toastr.min.js"></script>
 
     <!-- jquery UI -->
     <script src="vistas/assets/plugins/jquery-ui/js/jquery-ui.js"></script>

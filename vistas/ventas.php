@@ -220,9 +220,17 @@
 <!-- /.content -->
 
 <script>
+    
     var table;
     var items = []; //INPUT DE AUTOCOMPLETE
     var itemProducto = 1;
+
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000
+    })
 
     $(document).ready(function() {
 
