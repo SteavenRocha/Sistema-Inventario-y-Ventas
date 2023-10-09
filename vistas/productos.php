@@ -262,6 +262,145 @@
     </div>
 </div>
 
+<!-- /.VENTANA MODAL PARA MODIFICAR UN PRODUCTO -->
+<div class="modal fade" id="mdlGestionarProducto" role="dialog">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-gray py-1 align-items-center">
+
+                <h5 class="modal-title">Modificar Producto</h5>
+
+                <button type="button" class="btn btn-outline-primary text-white border-0 fs-5" data-bs-dismiss="modal" id="btnCerrarModal">
+                    <i class="far fa-times-circle"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form class="needs-validation">
+                    
+                    <div class="row">
+
+                        <!-- /.COLUMNA PARA REGISTRO DEL CODIGO DE BARRAS -->
+                        <div class="col-lg-6">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptCodigoReg"><i class="fas fa-barcode fs-6"></i>
+                                    <span class="small">Codigo de barras</span><span class="text-danger">*</span>
+                                </label>
+                                <input type="number" class="form-control form-control-sm" id="iptCodigoReg"
+                                    name="iptCodigoReg" placeholder="Código de Barras" required>
+
+                                <div class="invalid-feedback">Ingrese el código de barras</div>
+                            </div>
+                        </div>
+
+                        <!-- /.COLUMNA PARA EL REGISTRO DE LA CATEGORIA DEL PRODUCTO -->
+                        <div class="col-lg-6">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptCategoriaReg"><i class="fas fa-dumpster fs-6"></i>
+                                    <span class="small">Categoría</span><span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                                    id="selCategoriaReg" required>
+                                </select>
+                                
+                                <div class="invalid-feedback">Seleccione una categoría</div>
+                            </div>
+                        </div>
+
+                        <!-- /.COLUMNA PARA REGISTRO DE LA DESCRIPCION DEL PRODUCTO -->
+                        <div class="col-12">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptDescripcionReg"><i class="fas fa-file-signature fs-6"></i>
+                                    <span class="small">Descripción</span><span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control form-control-sm" id="iptDescripcionReg"
+                                    name="iptDescripcionReg" placeholder="Descripción" required>
+
+                                <div class="invalid-feedback">Ingrese la descripción del producto</div>
+                            </div>
+                        </div>
+
+                        <!-- /.COLUMNA PARA REGISTRO DEL PRECIO DE COMPRA -->
+                        <div class="col-lg-4">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptPrecioCompraReg"><i class="fas fa-dollar-sign fs-6"></i>
+                                    <span class="small">Precio Compra</span><span class="text-danger">*</span>
+                                </label>
+                                <input type="number" min="0" class="form-control form-control-sm" id="iptPrecioCompraReg"
+                                    placeholder="Precio de Compra" step=".01" required>
+
+                                <div class="invalid-feedback">Ingrese el precio de compra</div>
+                            </div>
+                        </div>
+
+                        <!-- /.COLUMNA PARA REGISTRO DEL PRECIO DE VENTA -->
+                        <div class="col-lg-4">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptPrecioVentaReg"><i class="fas fa-dollar-sign fs-6"></i>
+                                    <span class="small">Precio Venta</span><span class="text-danger">*</span>
+                                </label>
+                                <input type="number" min="0" class="form-control form-control-sm" id="iptPrecioVentaReg"
+                                    placeholder="Precio de Venta" step=".01" required>
+
+                                <div class="invalid-feedback">Ingrese el precio de venta</div>    
+                            </div>
+                        </div>
+
+                        <!-- /.COLUMNA PARA REGISTRO DE LA UTILIDAD -->
+                        <div class="col-lg-4">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptUtilidadReg"><i class="fas fa-dollar-sign fs-6"></i>
+                                    <span class="small">Utilidad</span><span class="text-danger">*</span>
+                                    </label>
+                                <input type="number" min="0" class="form-control form-control-sm" id="iptUtilidadReg"
+                                    placeholder="Utilidad" readonly>
+                            </div>
+                        </div>
+                        
+                        <!-- /.COLUMNA PARA REGISTRO DEL STOCK DEL PRODUCTO -->
+                        <div class="col-lg-6">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptStockReg"><i class="fas fa-plus-circle fs-6"></i>
+                                    <span class="small">Stock</span><span class="text-danger">*</span>
+                                </label>
+                                <input type="number" min="0" class="form-control form-control-sm" id="iptStockReg"
+                                    placeholder="Stock" required>
+
+                                <div class="invalid-feedback">Ingrese el stock del producto</div>     
+                            </div>
+                        </div>
+                        
+                        <!-- /.COLUMNA PARA REGISTRO DEL STOCK MINIMO DEL PRODUCTO -->
+                        <div class="col-lg-6">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptMinimoStockReg"><i class="fas fa-minus-circle fs-6"></i>
+                                    <span class="small">Mínimo Stock</span><span class="text-danger">*</span>
+                                </label>
+                                <input type="number" min="0" class="form-control form-control-sm" id="iptMinimoStockReg"
+                                    placeholder="Mínimo Stock" required>
+
+                                <div class="invalid-feedback">Ingrese el mínimo stock del producto</div>              
+                            </div>
+                        </div>
+
+                        <!-- /.BOTONES DE CANCELAR Y GUARDAR EL PRODUCTO -->
+                        <button type="button" class="btn btn-danger mt-3 mx-2" style="width:170px;"
+                            data-bs-dismiss="modal" id="btnCancelarRegistro">Cancelar</button>
+
+                        <button type="button" class="btn btn-primary mt-3 mx-2" style="width:170px;"
+                            id="btnGuardarProducto">Guardar Producto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.VENTANA MODAL PARA AGREGAR STOCK A UN PRODUCTO -->
 <div class="modal fade" id="mdlGestionarStock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -315,6 +454,90 @@
         </div>
     </div>
 </div>
+
+<!-- /.VENTANA MODAL PARA DISMIMINUIR STOCK A UN PRODUCTO -->
+<div class="modal fade" id="mdlGestionarStock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header bg-gray py-2">
+                <h6 class="modal-title" id="titulo_modal_stock">Disminuir Stock</h6>
+                <button type="button" class="btn-close text-white fs-6" data-bs-dismiss="modal" aria-label="Close"
+                    id="btnCerrarModalStock">
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-12 mb-3">
+                        <label for="" class="form-label text-primary d-block">Codigo: <span id="stock_codigoProducto"
+                                class="text-secondary"></span></label>
+                        <label for="" class="form-label text-primary d-block">Producto: <span id="stock_Producto"
+                                class="text-secondary"></span></label>
+                        <label for="" class="form-label text-primary d-block">Stock: <span id="stock_Stock"
+                                class="text-secondary"></span></label>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group mb-2">
+                            <label class="" for="iptStockRestar">
+                                <i class="fas fa-minus-circle fs-6"></i> <span class="small"
+                                    id="titulo_modal_label">Reducir al Stock</span>
+                            </label>
+                            <input type="number" min="0" class="form-control form-control-sm" id="iptStockRestar"
+                                placeholder="Ingrese cantidad a disminuir al Stock">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="" class="form-label text-danger">Nuevo Stock: <span id="stock_NuevoStock"
+                                class="text-secondary"></span></label><br>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
+                    id="btnCancelarRegistroStock">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnGuardarNuevorStock">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- /.VENTANA MODAL PARA ELIMINAR UN PRODUCTO -->
+<button id="btnEliminarProducto" class="btn btn-danger"></button>
+<!--
+<div class="modal fade" id="mdlEliminarProducto" role="dialog">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header  bg-gray py-1 align-items-center">
+                
+                <h5 class="modal-title">Eliminar Producto</h5>
+                <button type="button" class="btn btn-outline-primary text-white border-0 fs-5"  data-dismiss="modal" aria-label="Close" id="btnCerrarModalStock">
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p>¿Está seguro de eliminar este producto?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
 
 <script>
     var accion;
@@ -535,70 +758,51 @@
             calcularUtilidad();
         });
 
-     /* ======================================================================================
+  /* ======================================================================================
     EVENTO AL DAR CLICK EN EL BOTON AUMENTAR STOCK
      =========================================================================================*/
     $('#tbl_productos tbody').on('click', '.btnAumentarStock', function() {
-
         operacion_stock = 1; //sumar stock
-
+        accion = 3;
         $("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
-
         $("#titulo_modal_stock").html('Aumentar Stock'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
         $("#titulo_modal_label").html('Agregar al Stock'); // CAMBIAR EL TEXTO DEL LABEL DEL INPUT PARA INGRESO DE STOCK
         $("#iptStockSumar").attr("placeholder", "Ingrese cantidad a agregar al Stock"); //CAMBIAR EL PLACEHOLDER 
-
         var data = table.row($(this).parents('tr')).data(); //OBTENER EL ARRAY CON LOS DATOS DE CADA COLUMNA DEL DATATABLE
-        if(table.row(this).child.isShown()){ //cuando esta en tamaño responsivo
-            var data= table.row(this).data();
-        }
-
         $("#stock_codigoProducto").html(data[2])	//CODIGO DEL PRODUCTO DEL DATATABLE
         $("#stock_Producto").html(data[5]) 			//NOMBRE DEL PRODUCTO DEL DATATABLE
         $("#stock_Stock").html(data[9])				//STOCK ACTUAL DEL PRODUCTO DEL DATATABLE
-
         $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
-
     })
 
     /* ======================================================================================
     EVENTO AL DAR CLICK EN EL BOTON DISMINUIR STOCK
      =========================================================================================*/
-    $('#tbl_productos tbody').on('click', '.btnDisminuirStock', function() {
-
+     $('#tbl_productos tbody').on('click', '.btnDisminuirStock', function() {
         operacion_stock = 2; //restar stock
-        accion = 3;
+        accion = 4;
         $("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
-
         $("#titulo_modal_stock").html('Disminuir Stock'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
-        $("#titulo_modal_label").html('Disminuir al Stock'); // CAMBIAR EL TEXTO DEL LABEL DEL INPUT PARA INGRESO DE STOCK
-        $("#iptStockSumar").attr("placeholder", "Ingrese cantidad a disminuir al Stock"); //CAMBIAR EL PLACEHOLDER 
-
-
+        $("#titulo_modal_label").html('Reducir al Stock'); // CAMBIAR EL TEXTO DEL LABEL DEL INPUT PARA INGRESO DE STOCK
+        $("#iptStockRestar").attr("placeholder", "Ingrese cantidad a disminuir al Stock"); //CAMBIAR EL PLACEHOLDER 
         var data = table.row($(this).parents('tr')).data(); //OBTENER EL ARRAY CON LOS DATOS DE CADA COLUMNA DEL DATATABLE
-        if(table.row(this).child.isShown()){ //cuando esta en tamaño responsivo
-            var data= table.row(this).data();
-        }
-
         $("#stock_codigoProducto").html(data[2])	//CODIGO DEL PRODUCTO DEL DATATABLE
-        $("#stock_Producto").html(data[5])			//NOMBRE DEL PRODUCTO DEL DATATABLE
+        $("#stock_Producto").html(data[5]) 			//NOMBRE DEL PRODUCTO DEL DATATABLE
         $("#stock_Stock").html(data[9])				//STOCK ACTUAL DEL PRODUCTO DEL DATATABLE
-
         $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
-
     })
 
-    /* ======================================================================================
+     /* ======================================================================================
     EVENTO QUE LIMPIA EL INPUT DE INGRESO DE STOCK AL CERRAR LA VENTANA MODAL
-    =========================================================================================*/
-    $("#btnCancelarRegistroStock, #btnCerrarModalStock").on('click', function() {
-        $("#iptStockSumar").val("")
-    })
+     =========================================================================================*/
+        $("#btnCancelarRegistroStock, #btnCerrarModalStock").on('click', function() {
+            $("#iptStockSumar").val("")
+        })
 
     /* ======================================================================================
     EVENTO AL DIGITAR LA CANTIDAD A AUMENTAR O DISMINUIR DEL STOCK
-    =========================================================================================*/
-    $("#iptStockSumar").keyup(function() {
+     =========================================================================================*/
+        $("#iptStockSumar").keyup(function() {
             //console.log($("#iptStockSumar").val());
             if (operacion_stock == 1) {
                 if ($("#iptStockSumar").val() != "" && $("#iptStockSumar").val() > 0) {
