@@ -510,35 +510,6 @@
     </div>
 </div>
 
-<!-- /.VENTANA MODAL PARA ELIMINAR UN PRODUCTO -->
-<button id="btnEliminarProducto" class="btn btn-danger"></button>
-<!--
-<div class="modal fade" id="mdlEliminarProducto" role="dialog">
-
-    <div class="modal-dialog">
-
-        <div class="modal-content">
-
-            <div class="modal-header  bg-gray py-1 align-items-center">
-                
-                <h5 class="modal-title">Eliminar Producto</h5>
-                <button type="button" class="btn btn-outline-primary text-white border-0 fs-5"  data-dismiss="modal" aria-label="Close" id="btnCerrarModalStock">
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <p>¿Está seguro de eliminar este producto?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
--->
-
-
 <script>
     var accion;
     var table;
@@ -946,8 +917,8 @@
         $("#iptPrecioCompraReg").val(data[6]);
         $("#iptPrecioVentaReg").val(data[7]);
         $("#iptUtilidadReg").val(data[8]);
-        $("#iptStockReg").val(data[9].replace(' Und(s)', '').replace(' Kg(s)', ''));
-        $("#iptMinimoStockReg").val(data[10].replace(' Und(s)', '').replace(' Kg(s)', ''));
+        $("#iptStockReg").val(data[9].replace(' Und(s)', '').replace(' Mt(s)', ''));
+        $("#iptMinimoStockReg").val(data[10].replace(' Und(s)', '').replace(' Mt(s)', ''));
 
     })
     /* ======================================================================================

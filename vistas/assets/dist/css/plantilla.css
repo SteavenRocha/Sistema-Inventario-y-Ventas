@@ -41,3 +41,27 @@ table.dataTable tbody td {
     padding-top: 5px !important;
     padding-bottom: 5px !important;
 }
+
+.transparentbar {
+    background-repeat:no-repeat !important;
+    cursor:pointer !important;
+    outline:none !important;
+    border:none !important;
+    box-shadow:none !important; 
+    background-image: none !important;  
+    background-color: transparent !important;
+  
+  }
+  
+  .btn-check:focus+.btn-primary, .btn-primary:focus {
+    color: #fff;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  
+  .transparentbar:hover {
+    color: #fff;
+    background-color: transparent !important;
+    border-color: transparent !important;
+  }
