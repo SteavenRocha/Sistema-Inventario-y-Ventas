@@ -37,6 +37,11 @@ table.dataTable tbody td {
     color: white !important;
 }
 
+.buttons-pdf {
+    background: #ff0000   !important;
+    color: white !important;
+}
+
 .dt-button{
     padding-top: 5px !important;
     padding-bottom: 5px !important;

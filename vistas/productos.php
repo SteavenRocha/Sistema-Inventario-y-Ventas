@@ -570,6 +570,12 @@
                         $(".needs-validation").removeClass("was-validated");
                     }
                 },
+                {
+                    extend: 'pdf',
+                    orientation: 'landscape',
+                    className: 'buttons-pdf'
+                },
+
                 'excel', 'print', 'pageLength'
             ],
             pageLength: [5, 10, 15, 30, 50, 100],
