@@ -8,4 +8,12 @@ class CategoriasControlador{
 
         return $categorias;
     }
+
+    static public function ctrGuardarCategoria($accion, $idCategoria, $categoria, $medida){
+
+        $guardarCategoria = CategoriasModelo::mdlGuardarCategoria($accion, $idCategoria, $categoria, $medida);
+
+        return $guardarCategoria;
+    }
+
 }

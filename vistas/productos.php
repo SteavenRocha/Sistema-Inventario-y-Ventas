@@ -43,7 +43,7 @@
 
                             <div style="width: 20%;" class="form-floating mx-1">
                                 <input 
-                                        type="text" 
+                                        type="number" 
                                         id="iptCodigoBarras"
                                         class="form-control"
                                         placeholder="Codigo de Barras..."
@@ -152,7 +152,7 @@
                                 <label class="" for="iptCodigoReg"><i class="fas fa-barcode fs-6"></i>
                                     <span class="small">Codigo de barras</span><span class="text-danger">*</span>
                                 </label>
-                                <input type="number" class="form-control form-control-sm" id="iptCodigoReg"
+                                <input type="number" min="0" class="form-control form-control-sm" id="iptCodigoReg"
                                     name="iptCodigoReg" placeholder="Código de Barras" required>
 
                                 <div class="invalid-feedback">Ingrese el código de barras</div>
