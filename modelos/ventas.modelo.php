@@ -76,4 +76,36 @@ class VentasModelo{
         }
        
     }
+
+    static public function mdlListarVentas($fechaDesde,$fechaHasta){
+
+        try {
+            
+            $stmt = Conexion::conectar()->prepare("SELECT Concat('Boleta Nro: ',v.nro_boleta,' - Total Venta: S./ ',Round(vc.total_venta,2)) as nro_boleta,
+                                                            v.codigo_producto,
+                                                            c.nombre_categoria,
+                                                            p.descripcion_producto,
+                                                            case when c.aplica_peso = 1 then concat(v.cantidad,' Kg(s)')
+                                                            else concat(v.cantidad,' Und(s)') end as cantidad,                            
+                                                            concat('S./ ',round(v.total_venta,2)) as total_venta,
+                                                            v.fecha_venta
+                                                            FROM venta_detalle v inner join productos p on v.codigo_producto = p.codigo_producto
+                                                                                inner join venta_cabecera vc on vc.nro_boleta = v.nro_boleta
+                                                                                inner join categorias c on c.id_categoria = p.id_categoria_producto
+                                                    where DATE(v.fecha_venta) >= date(:fechaDesde) and DATE(v.fecha_venta) <= date(:fechaHasta)
+                                                    order by v.nro_boleta asc");
+
+            $stmt -> bindParam(":fechaDesde",$fechaDesde,PDO::PARAM_STR);
+            $stmt -> bindParam(":fechaHasta",$fechaHasta,PDO::PARAM_STR);
+
+            $stmt -> execute();
+
+            return $stmt->fetchAll();
+            
+        } catch (Exception $e) {
+            return 'Excepción capturada: '.  $e->getMessage(). "\n";
+        }
+        
+        $stmt = null;
+    }
 }

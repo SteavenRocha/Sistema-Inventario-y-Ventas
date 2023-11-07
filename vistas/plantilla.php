@@ -54,6 +54,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- SweetAlert2 -->
     <script src="vistas/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 
+     <!-- InputMask -->
+     <script src="vistas/assets/plugins/moment/moment.min.js"></script>
+    <script src="vistas/assets/plugins/inputmask/jquery.inputmask.min.js"></script>
+
     <!-- toast -->
     <script src="vistas/assets/plugins/toastr/toastr.min.js"></script>
 
